@@ -1,0 +1,18 @@
+error="$(tput setaf 1)✖️$(tput sgr0)"
+passed="$(tput setaf 2)✔️$(tput sgr0)"
+
+echo
+echo "$(tput bold)# PRE-PUSH SCRIPT$(tput sgr0)"
+
+# Check spec and code coverage
+echo "> Check spec and code coverage..."
+bun test --coverage || exit 1
+echo "$passed Spec is OK."
+echo "$passed Code coverage is OK."
+
+# Check type definition
+echo
+echo "> Check type definition..."
+bunx tsc --noEmit && echo "$passed Type definition is OK."
+
+echo

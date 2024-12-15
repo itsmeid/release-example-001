@@ -1,0 +1,40 @@
+passed="$(tput setaf 2)✔️$(tput sgr0)"
+error="$(tput setaf 1)✖️$(tput sgr0)"
+
+echo
+echo "$(tput bold)# PRE-COMMIT SCRIPT$(tput sgr0)"
+
+# Check files to commit
+echo "> Check staged files to commit"
+staged=$(git diff --name-only --cached)
+if [[ -z $staged ]]; then
+	echo "$error Nothing to commit."
+	echo
+    exit 1
+fi
+echo
+
+# Check unstaged changes
+echo "> Check unstaged changes from staged files"
+changes=$(git status --short | grep "^MM" || echo "")
+if [[ -n $changes ]]; then
+    echo "$(tput setaf 1)$changes$(tput sgr0)"
+	echo
+    exit 1
+fi
+echo "$passed No unstaged changes."
+echo
+
+# Check format
+echo "> Check format on staged files..."
+bunx biome format --fix --staged --no-errors-on-unmatched
+echo "$passed Format is OK."
+echo
+
+# Check lint
+echo "> Check lint on staged files..."
+bun biome lint --fix --staged --no-errors-on-unmatched
+echo "$passed Lint is OK."
+
+# Reindex staged files
+git update-index --again
