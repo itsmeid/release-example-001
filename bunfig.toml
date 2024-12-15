@@ -1,0 +1,8 @@
+[test]
+root = "./__test__"
+coverageIgnoreSourcemaps = true
+coverageSkipTestFiles = true
+coverageThreshold = 1
+
+[install.lockfile]
+print = "yarn"
