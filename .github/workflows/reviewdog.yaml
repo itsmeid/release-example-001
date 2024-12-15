@@ -1,8 +1,8 @@
 name: reviewdog
 on: [pull_request]
 jobs:
-    code-quality:
-        name: Check code quality
+    review-code-quality:
+        name: Review code quality
         runs-on: ubuntu-latest
         permissions:
             contents: read
