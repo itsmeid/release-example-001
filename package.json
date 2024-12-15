@@ -1,0 +1,26 @@
+{
+	"name": "release-example",
+	"module": "index.ts",
+	"type": "module",
+	"scripts": {
+		"ci": "bun install --frozen-lockfile",
+		"reinstall": "rm -rf node_modules && rm -f bun.lockb yarn.lock && bun install --yarn",
+		"check": "bun check:format && bun check:lint && bun check:spec && bun check:type",
+		"check:format": "bunx biome format --reporter=summary",
+		"check:lint": "bunx biome lint --reporter=summary",
+		"check:spec": "bun test --coverage",
+		"check:type": "bunx tsc --noEmit --extendedDiagnostics",
+		"out:dist": "rm -rf dist && bunx tsc -p ./tsconfig.dist.json",
+		"out:lcov": "bun test --coverage --coverage-reporter \"lcov\"",
+		"out:reporter": "bun test --reporter=junit --reporter-outfile=./reporter.xml"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "1.9.4",
+		"@commitlint/cli": "19.6.0",
+		"@commitlint/config-conventional": "19.6.0",
+		"@types/bun": "latest",
+		"husky": "9.1.6",
+		"semantic-release": "24.2.0",
+		"typescript": "5.5.2"
+	}
+}
