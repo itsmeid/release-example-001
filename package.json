@@ -1,6 +1,25 @@
 {
-	"name": "release-example",
-	"module": "index.ts",
+	"name": "release-example-001",
+	"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+	"version": "1.0.0",
+	"author": "itsmeid",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/itsmeid/release-example-001.git"
+	},
+	"homepage": "https://github.com/itsmeid/release-example-001#readme",
+	"bugs": {
+		"url": "https://github.com/itsmeid/release-example-001/issues"
+	},
+	"license": "MIT",
+	"publishConfig": {
+		"access": "public"
+	},
+	"keywords": ["development", "testing", "boilerplate"],
+	"types": "./dist/index.d.ts",
+	"main": "./dist/index.js",
+	"module": "./dist/index.js",
+	"files": ["dist"],
 	"type": "module",
 	"scripts": {
 		"ci": "bun install --frozen-lockfile",
@@ -10,17 +29,38 @@
 		"check:lint": "bunx biome lint",
 		"check:spec": "bun test --coverage",
 		"check:type": "bunx tsc --noEmit --extendedDiagnostics",
+		"out:docs": "bunx typedoc && cp docs/README.md README.md",
 		"out:dist": "rm -rf dist && bunx tsc -p ./tsconfig.dist.json",
-		"out:lcov": "bun test --coverage --coverage-reporter \"lcov\"",
-		"out:reporter": "bun test --reporter=junit --reporter-outfile=./reporter.xml"
+		"out:lcov": "bun test --coverage --coverage-reporter=lcov",
+		"out:reporter": "bun test --reporter=junit --reporter-outfile=reporter.xml"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",
 		"@commitlint/cli": "19.6.0",
 		"@commitlint/config-conventional": "19.6.0",
+		"@semantic-release/changelog": "^6.0.3",
 		"@types/bun": "latest",
 		"husky": "9.1.6",
 		"semantic-release": "24.2.0",
+		"typedoc": "0.27.5",
+		"typedoc-plugin-markdown": "4.3.2",
 		"typescript": "5.5.2"
+	},
+	"exports": {
+		".": {
+			"bun": "./dist/index.js",
+			"default": "./dist/index.js",
+			"import": "./dist/index.js",
+			"node": "./dist/index.js",
+			"require": "./dist/index.js",
+			"types": "./dist/index.d.ts"
+		},
+		"./*": {
+			"types": "./dist/*/index.d.ts",
+			"import": "./dist/*/index.js",
+			"require": "./dist/*/index.js",
+			"bun": "./dist/*/index.js",
+			"default": "./dist/*/index.js"
+		}
 	}
 }
