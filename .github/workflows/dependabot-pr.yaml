@@ -3,16 +3,17 @@ name: Dependabot Pull Request
 on:
     pull_request:
         paths:
-            - package.json
-            - yarn.lock
+            - "package.json"
+            - "yarn.lock"
+
+permissions:
+    contents: write
 
 jobs:
     main:
         name: Update lockfile
         if: github.actor == 'dependabot[bot]'
         runs-on: ubuntu-latest
-        permissions:
-            contents: write
         steps:
             - name: Checkout
               uses: actions/checkout@v4
@@ -29,7 +30,7 @@ jobs:
             - name: Update PR
               run: |
                   git add bun.lockb yarn.lock
-                  git config --global user.name github-actions
-                  git config --global user.email github-actions@github.com
-                  git commit -n --amend
+                  git config --global user.name 'dependabot[bot]'
+                  git config --global user.email 'dependabot[bot]@users.noreply.github.com'
+                  git commit --amend
                   git push --force-with-lease
