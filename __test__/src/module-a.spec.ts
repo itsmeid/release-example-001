@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'bun:test';
+import { describe, expect, it } from 'bun:test';
 import { joinString } from 'src/module-a';
 
 describe('module-a', () => {

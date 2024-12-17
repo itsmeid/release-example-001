@@ -55,9 +55,7 @@
 	"groups": [
 		{
 			"title": "Functions",
-			"children": [
-				1
-			]
+			"children": [1]
 		}
 	],
 	"packageName": "release-example-001",

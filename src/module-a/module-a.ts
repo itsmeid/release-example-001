@@ -16,8 +16,3 @@ export const joinString = <A extends string, B extends string>(a: A, b: B): `${A
  * Alias of {@link joinString}
  */
 export const joinStr = joinString;
-
-/**
- * @internal
- */
-export const _internal = () => {}

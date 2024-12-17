@@ -1,9 +1,9 @@
-import { describe, it, expect } from 'bun:test';
+import { describe, expect, it } from 'bun:test';
 import { joinObject } from 'src/module-b';
 
 describe('module-b', () => {
 	it('joinObject', () => {
-		expect(joinObject({ a: 'a' }, { b: 'b' })).toBe({ a: 'a', b: 'b' });
+		expect(joinObject({ a: 'a' }, { b: 'b' })).toEqual({ a: 'a', b: 'b' });
 	});
 
 	it('longer duration', () => {

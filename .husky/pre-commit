@@ -27,7 +27,7 @@ echo
 
 # Check format
 echo "> Check format on staged files..."
-bunx biome format --fix --staged --no-errors-on-unmatched
+bunx biome check --fix --staged --no-errors-on-unmatched --linter-enabled=false
 echo "$passed Format is OK."
 echo
 

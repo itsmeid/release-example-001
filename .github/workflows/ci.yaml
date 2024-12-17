@@ -1,26 +1,32 @@
 name: CI
 
-on: [push, pull_request]
+on:
+    push:
+        branches:
+            - "*"
+        paths-ignore:
+            - "**/*.md"
+            - "**/*.txt"
+    pull_request:
+        branches:
+            - "*"
 
 jobs:
-    code-quality:
-        name: Check code quality
+    quality:
+        name: Code quality check
         runs-on: ubuntu-latest
         steps:
             - name: Checkout code
               uses: actions/checkout@v4
 
-            - name: Setup bun
-              uses: oven-sh/setup-bun@v2
+            - name: Setup Biome CLI
+              uses: biomejs/setup-biome@v2
 
-            - name: Install dependencies
-              run: bun ci
-
-            - name: Run formatter & linter
-              run: bunx biome ci . --organize-imports-enabled=false --reporter=github --no-errors-on-unmatched
+            - name: Run check
+              run: biome ci --reporter=github --no-errors-on-unmatched
 
     type:
-        name: Check type
+        name: Type check
         runs-on: ubuntu-latest
         steps:
             - name: Checkout code
@@ -36,7 +42,7 @@ jobs:
               run: bun check:type
 
     spec:
-        name: Check spec
+        name: Spec check
         runs-on: ${{ matrix.os }}
         strategy:
             matrix:

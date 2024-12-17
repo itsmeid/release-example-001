@@ -25,7 +25,7 @@
 		"ci": "bun install --frozen-lockfile",
 		"reinstall": "rm -rf node_modules && rm -f bun.lockb yarn.lock && bun install --yarn",
 		"check": "bun check:format && bun check:lint && bun check:spec && bun check:type",
-		"check:format": "bunx biome format",
+		"check:format": "bunx biome check --linter-enabled=false",
 		"check:lint": "bunx biome lint",
 		"check:spec": "bun test --coverage",
 		"check:type": "bunx tsc --noEmit --extendedDiagnostics",
