@@ -32,5 +32,5 @@ jobs:
                   git add bun.lockb yarn.lock
                   git config --global user.name 'dependabot[bot]'
                   git config --global user.email 'dependabot[bot]@users.noreply.github.com'
-                  git commit --amend
+                  git commit --amend --no-verify
                   git push --force-with-lease
