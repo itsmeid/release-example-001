@@ -31,5 +31,5 @@ jobs:
                   git add bun.lockb yarn.lock
                   git config --global user.name github-actions
                   git config --global user.email github-actions@github.com
-                  git commit --amend
+                  git commit -n --amend
                   git push --force-with-lease
