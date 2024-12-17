@@ -10,7 +10,7 @@ on:
 
 jobs:
     check-commit:
-        name: Check commit(s)
+        name: Commit standard
         runs-on: ubuntu-latest
         steps:
             - name: Checkout code (full-history)
