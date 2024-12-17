@@ -1,5 +1,5 @@
 /**
  * This is package documentation for module-a.
- * @module moduleA
+ * @module
  */
 export * from './module-a';

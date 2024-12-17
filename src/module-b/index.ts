@@ -1,6 +1,5 @@
 /**
  * This is package documentation for module-b.
- *
- * @packageDocumentation
+ * @module
  */
 export * from './module-b';

@@ -68,7 +68,7 @@ bun add -d @itsmeid/bun-test-utils
 <tr>
 <td>
 
-[moduleA](https://github.com/itsmeid/release-example-001/tree/main/docs/moduleA.md)
+[module-a](https://github.com/itsmeid/release-example-001/tree/main/docs/module-a.md)
 
 </td>
 <td>
