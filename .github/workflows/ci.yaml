@@ -4,16 +4,47 @@ on:
     push:
         branches:
             - "*"
-        paths-ignore:
-            - "**/*.md"
-            - "**/*.txt"
     pull_request:
         branches:
             - "*"
 
+concurrency:
+    group: ${{ github.event.pull_request.head.sha || github.sha }}
+    cancel-in-progress: true
+
 jobs:
+    commit:
+        name: Commit check
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code (full-history)
+              if: github.event_name == 'pull_request'
+              uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
+
+            - name: Checkout code
+              if: github.event_name == 'push'
+              uses: actions/checkout@v4
+              with:
+                  fetch-depth: 1
+
+            - name: Set up Bun
+              uses: oven-sh/setup-bun@v2
+
+            - name: Install dependencies
+              run: bun ci
+
+            - name: Check current commit
+              if: github.event_name == 'push'
+              run: bunx commitlint --last --verbose
+
+            - name: Check PR commits
+              if: github.event_name == 'pull_request'
+              run: npx bunx --from ${{ github.event.pull_request.base.sha }} --to ${{ github.event.pull_request.head.sha }} --verbose
+
     quality:
-        name: Code quality check
+        name: Quality check
         runs-on: ubuntu-latest
         steps:
             - name: Checkout code
