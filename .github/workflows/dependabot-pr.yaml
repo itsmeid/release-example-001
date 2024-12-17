@@ -29,6 +29,7 @@ jobs:
 
             - name: Update PR
               run: |
+                  rm -rf .husky
                   git add bun.lockb yarn.lock
                   git config --global user.name 'dependabot[bot]'
                   git config --global user.email 'dependabot[bot]@users.noreply.github.com'
