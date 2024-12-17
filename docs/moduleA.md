@@ -103,7 +103,7 @@ The second characters value.
 
 ### Defined in
 
-module-a/module-a.ts:11
+[module-a/module-a.ts:11](https://github.com/itsmeid/release-example-001/blob/e05e1a2b8f037c518724c07b6e1811cad3264c0a/src/module-a/module-a.ts#L11)
 
 ***
 
@@ -208,4 +208,4 @@ The second characters value.
 
 ### Defined in
 
-module-a/module-a.ts:18
+[module-a/module-a.ts:18](https://github.com/itsmeid/release-example-001/blob/e05e1a2b8f037c518724c07b6e1811cad3264c0a/src/module-a/module-a.ts#L18)
