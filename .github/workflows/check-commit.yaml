@@ -9,37 +9,32 @@ on:
             - "*"
 
 jobs:
-  push-check:
-    name: Check push commit
-    if: github.event_name == 'push'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        if: githu
-        with:
-          fetch-depth: 0
-      - name: Install required dependencies
-        run: |
-          apt update
-          apt install -y sudo
-          sudo apt install -y git curl
-          curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
-          sudo DEBIAN_FRONTEND=noninteractive apt install -y nodejs
-      - name: Print versions
-        run: |
-          git --version
-          node --version
-          npm --version
-          npx commitlint --version
-      - name: Install commitlint
-        run: |
-          npm install conventional-changelog-conventionalcommits
-          npm install commitlint@latest
+    check-commit:
+        name: Check commit(s)
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code (full-history)
+              if: github.event_name == 'pull_request'
+              uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
 
-      - name: Validate current commit (last commit) with commitlint
-        if: github.event_name == 'push'
-        run: npx commitlint --last --verbose
+            - name: Checkout code
+              if: github.event_name == 'push'
+              uses: actions/checkout@v4
+              with:
+                  fetch-depth: 1
 
-      - name: Validate PR commits with commitlint
-        if: github.event_name == 'pull_request'
-        run: npx commitlint --from ${{ github.event.pull_request.base.sha }} --to ${{ github.event.pull_request.head.sha }} --verbose
+            - name: Set up Bun
+              uses: oven-sh/setup-bun@v2
+
+            - name: Install dependencies
+              run: bun ci
+
+            - name: Check current commit
+              if: github.event_name == 'push'
+              run: bunx commitlint --last --verbose
+
+            - name: Check PR commits
+              if: github.event_name == 'pull_request'
+              run: npx bunx --from ${{ github.event.pull_request.base.sha }} --to ${{ github.event.pull_request.head.sha }} --verbose
