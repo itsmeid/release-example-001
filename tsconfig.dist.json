@@ -1,14 +1,13 @@
 {
 	"extends": "./tsconfig.json",
 	"compilerOptions": {
+		"allowImportingTsExtensions": null,
+		"declaration": true,
 		"diagnostics": true,
 		"listEmittedFiles": true,
-		"allowImportingTsExtensions": null,
 		"noEmit": false,
-		"declaration": true,
 		"outDir": "./dist",
-		"allowJs": true
 	},
-	"include": ["**/*.ts"],
+	"include": ["src/**/*.ts"],
 	"exclude": ["**/node_modules", "**/*.spec.ts", "*.config.ts"]
 }

@@ -1,9 +1,9 @@
 import { describe, it, expect } from 'bun:test';
-import { releaseExample } from 'index';
+import { joinObject } from 'src/module-b';
 
-describe('example', () => {
-	it('release example', () => {
-		expect(releaseExample()).toBe('releaseExample');
+describe('module-b', () => {
+	it('joinObject', () => {
+		expect(joinObject({ a: 'a' }, { b: 'b' })).toBe({ a: 'a', b: 'b' });
 	});
 
 	it('longer duration', () => {
@@ -11,7 +11,7 @@ describe('example', () => {
 		const length = 1000000;
 
 		for (let i = 0; i < length; i++) {
-			temp.push(releaseExample());
+			temp.push(joinObject({ a: 'a' }, { b: 'b' }));
 		}
 
 		expect(temp).toBeArrayOfSize(length);
