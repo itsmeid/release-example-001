@@ -24,26 +24,26 @@
 
 ## ✨ Highlights <a name="highlights"></a>
 
-This package offers a set of tools to make your testing easier and boost your development workflow.
+This package offers a set of lorem ipsum dolor amet roin sollicitudin, tellus vitae metus mollis consectetur quis id risus, etiam et augue eget tellus fermentum cursus.
 
 * Easy to use
 * Lightweight
 * Tested
 
 What's inside: 
-* Mocking: Create mocks for modules and functions without the hassle.
-* Auto-Mocking: Automatically generate mocks for complex objects to keep your tests clean and
-* Custom Timers: Simulate time in your tests with a fake timer that supports setTimeout and setInterval.
-* Global DOM Control: Manage global DOM settings effortlessly for your web app tests (using [@happy-dom/global-registrator](https://www.npmjs.com/package/@happy-dom/global-registrator)).
+* A: Curabitur dapibus est vitae neque tincidunt commodo.
+* B: Sed non mi quis quam malesuada dapibus.
+* C: Vivamus eu turpis eu ligula eleifend placerat sed quis libero.
+* D: Nullam bibendum mi eget nibh aliquam, eu aliquet libero ultricies.
 
 ## 🔌 Installation <a name="installation"></a>
 
 ```bash
 # NPM
-npm install --save-dev @itsmeid/bun-test-utils
+npm install --save-dev release-example-001
 
 # BUN
-bun add -d @itsmeid/bun-test-utils
+bun add -d release-example-001
 ```
 
 ## ⛏️ Built Using <a name="built_using"></a>
