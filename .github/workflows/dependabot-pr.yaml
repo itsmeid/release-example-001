@@ -12,7 +12,7 @@ permissions:
 jobs:
     main:
         name: Update lockfile
-        if: github.actor == 'dependabot[bot]'
+        if: github.actor == "dependabot[bot]"
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
@@ -30,7 +30,7 @@ jobs:
             - name: Update PR
               run: |
                   git add bun.lockb yarn.lock
-                  git config --global user.name git config user.name github-actions
-                  git config --global user.email 'dependabot[bot]@users.noreply.github.com'
+                  git config user.name "dependabot[bot]""
+                  git config user.email "dependabot[bot]@users.noreply.github.com"
                   git commit --amend --no-edit
                   git push --force-with-lease
