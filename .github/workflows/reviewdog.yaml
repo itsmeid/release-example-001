@@ -1,14 +1,16 @@
 name: Reviewdog
 
+run-name: Reviewdog > ${{ github.event.pull_request.title }}
+
 on:
     pull_request:
         branches:
             - "*"
+            - "!dependabot/**"
 
 jobs:
     review-code-quality:
         name: Review code quality
-        if: ${{ github.actor != 'dependabot[bot]' }}
         runs-on: ubuntu-latest
         permissions:
             contents: read

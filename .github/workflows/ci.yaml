@@ -1,21 +1,29 @@
 name: CI
 
+run-name: CI > ${{ github.event.pull_request.title }}
+
 on:
     push:
         branches:
             - "*"
+            - "!dependabot/**"
     pull_request:
         branches:
             - "*"
+            - "!dependabot/**"
+    workflow_run:
+        workflows: ["Dependabot PR"]
+        types: [completed]
+        branches:
+            - "dependabot/**"
 
-# concurrency:
-#     group: ${{ github.event.pull_request.head.sha || github.sha }}
-#     cancel-in-progress: true
+concurrency:
+    group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.run_id }}
+    cancel-in-progress: true
 
 jobs:
     commit:
         name: Commit check
-        if: ${{ github.actor != 'dependabot[bot]' }}
         runs-on: ubuntu-latest
         steps:
             - name: Checkout code (full-history)
@@ -45,10 +53,8 @@ jobs:
               if: github.event_name == 'pull_request'
               run: npx bunx --from ${{ github.event.pull_request.base.sha }} --to ${{ github.event.pull_request.head.sha }} --verbose
 
-
     quality:
         name: Quality check
-        if: ${{ github.actor != 'dependabot[bot]' }}
         runs-on: ubuntu-latest
         steps:
             - name: Checkout code
@@ -62,7 +68,6 @@ jobs:
 
     type:
         name: Type check
-        if: ${{ github.actor != 'dependabot[bot]' }}
         runs-on: ubuntu-latest
         steps:
             - name: Checkout code
@@ -79,7 +84,6 @@ jobs:
 
     spec:
         name: Spec check
-        if: ${{ github.actor != 'dependabot[bot]' }}
         runs-on: ubuntu-latest
         steps:
             - name: Checkout code
