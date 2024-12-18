@@ -29,8 +29,9 @@ jobs:
 
             - name: Update PR
               run: |
+                  export TERM=xterm
                   git add bun.lockb yarn.lock
                   git config user.name "dependabot[bot]"
                   git config user.email "dependabot[bot]@users.noreply.github.com"
-                  git commit --amend --no-edit --no-verify
+                  git commit --amend --no-edit
                   git push --force-with-lease
