@@ -10,8 +10,10 @@ on:
         branches-ignore:
             - "dependabot/**"
     workflow_run:
-        workflows: ["Dependabot PR"]
-        types: [completed]
+        workflows:
+            - Dependabot PR
+        types:
+            - completed
         branches:
             - "dependabot/**"
 
