@@ -12,7 +12,7 @@ permissions:
 jobs:
     main:
         name: Update lockfile
-        if: github.actor == "dependabot[bot]"
+        if: github.actor == 'dependabot[bot]'
         runs-on: ubuntu-latest
         steps:
             - name: Checkout

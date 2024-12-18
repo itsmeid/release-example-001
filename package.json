@@ -22,7 +22,7 @@
 	"files": ["dist"],
 	"type": "module",
 	"scripts": {
-		"prepare": "husky",
+		"prepare": "bunx husky",
 		"ci": "bun install --frozen-lockfile",
 		"reinstall": "bun clean:deps && bun install --yarn",
 
