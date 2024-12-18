@@ -4,9 +4,8 @@ run-name: Reviewdog > ${{ github.event.pull_request.title }}
 
 on:
     pull_request:
-        branches:
-            - "*"
-            - "!dependabot/**"
+        branches-ignore:
+            - "dependabot/**"
 
 jobs:
     review-code-quality:

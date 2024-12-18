@@ -4,13 +4,11 @@ run-name: CI > ${{ github.event.pull_request.title || github.event.head_commit.m
 
 on:
     push:
-        branches:
-            - "*"
-            - "!dependabot/**"
+        branches-ignore:
+            - "dependabot/**"
     pull_request:
-        branches:
-            - "*"
-            - "!dependabot/**"
+        branches-ignore:
+            - "dependabot/**"
     workflow_run:
         workflows: ["Dependabot PR"]
         types: [completed]
