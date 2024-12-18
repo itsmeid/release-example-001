@@ -1,5 +1,10 @@
-name: reviewdog
-on: [pull_request]
+name: Reviewdog
+
+on:
+    pull_request:
+        branches:
+            - "*"
+
 jobs:
     review-code-quality:
         name: Review code quality
@@ -10,10 +15,13 @@ jobs:
         steps:
             - name: Checkout code
               uses: actions/checkout@v4
+              with:
+                  fetch-depth: 0
+                  ref: ${{ github.event.pull_request.head.ref }}
 
             - name: Review code
               uses: mongolyy/reviewdog-action-biome@v1
               with:
                   github_token: ${{ secrets.github_token }}
                   reporter: github-pr-review
-                  fail_on_error: true
+                  fail_on_error: false

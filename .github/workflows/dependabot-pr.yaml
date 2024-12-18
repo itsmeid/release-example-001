@@ -6,14 +6,13 @@ on:
             - "package.json"
             - "yarn.lock"
 
-permissions:
-    contents: write
-
 jobs:
     main:
         name: Update lockfile
         if: github.actor == 'dependabot[bot]'
         runs-on: ubuntu-latest
+        permissions:
+            contents: write
         steps:
             - name: Checkout
               uses: actions/checkout@v4
