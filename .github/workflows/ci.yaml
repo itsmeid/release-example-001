@@ -1,19 +1,21 @@
 name: CI
 
+run-name: CI > ${{ github.event.pull_request.title || github.event.head_commit.message }}
+
 on:
     push:
-        branches:
-            - "*"
+        branches-ignore:
+            - "dependabot/**"
     pull_request:
-        branches:
-            - "*"
+        branches-ignore:
+            - "dependabot/**"
     workflow_run:
         workflows:
             - Dependabot PR
         types:
             - completed
         branches:
-            - "dependabot/**"
+            - main
 
 concurrency:
     group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.run_id }}
@@ -54,8 +56,8 @@ jobs:
               if: github.event_name == 'pull_request'
               run: npx bunx --from ${{ github.event.pull_request.base.sha }} --to ${{ github.event.pull_request.head.sha }} --verbose
 
-    quality:
-        name: Quality check
+    code:
+        name: Code check
         if: ${{ github.actor != 'dependabot[bot]' }}
         runs-on: ubuntu-latest
         steps:
