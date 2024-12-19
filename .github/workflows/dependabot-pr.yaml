@@ -5,13 +5,13 @@ run-name: Dependabot PR > ${{ github.event.pull_request.title }}
 on:
     pull_request:
         branches:
-            - "dependabot/**"
+            - main
         paths:
-            - "package.json"
-            - "yarn.lock"
+            - package.json
+            - yarn.lock
 
 jobs:
-    main:
+    update-lockfile:
         name: Update lockfile
         if: github.actor == 'dependabot[bot]'
         runs-on: ubuntu-latest
